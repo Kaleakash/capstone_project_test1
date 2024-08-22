@@ -7,44 +7,44 @@ pipeline {
     stages {
         stage('Verify All Software Version') {
             steps {
-                bat "git --version"
-                bat "java -version"
-                bat "mvn -version"
-                bat "docker --version"
-                bat "docker-compose --version"
+                sh "git --version"
+                sh "java -version"
+                sh "mvn -version"
+                sh "docker --version"
+                sh "docker-compose --version"
             }
         }
         stage('Build the Eureka Server') {
             steps {
                 dir("./backend/eureka-server/eureka-server/"){
-                    bat "dir"
-                    bat "mvn clean package"
+                    sh "ls"
+                    sh "mvn clean package"
                 }
             }
         }
         stage('Build the Micro Service project') {
             steps {
                 dir("./backend/micro-service-app/micro-service-app/"){
-                    bat "dir"
-                    bat "mvn clean package"
+                    sh "ls"
+                    sh "mvn clean package"
                 }
             }
         }
         stage('Build Angular Project') {
             steps {
                 dir("./frontend/front-end-app/"){
-                    bat "dir"
-                    bat "npm install"
-                    bat "ng build"
+                    sh "ls"
+                    sh "npm install"
+                    sh "ng build"
                 }
             }
         }
         stage('Using Docker-Compose run all container') {
             steps {
-                bat "docker-compose down"
-                bat "docker-compose up --build -d"
-                bat "docker images"
-                bat "docker ps"
+                sh "docker-compose down"
+                sh "docker-compose up --build -d"
+                sh "docker images"
+                sh "docker ps"
             }
         }
     }
