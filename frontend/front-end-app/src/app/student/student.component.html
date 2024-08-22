@@ -1,0 +1,57 @@
+<div class="container">
+
+    <div>
+        <h4>Add Student Details</h4>
+    <form class="form-group" [formGroup]="studentRef" (ngSubmit)="addStudent()">
+        <div class="row">
+              <div class="col-3">
+                <label>SId</label>
+              </div>  
+              <div class="col-3">
+                <input type="number" class="form-control" formControlName="sid"/>
+              </div>
+        </div>
+              
+        <div class="row">
+            <div class="col-3">
+              <label>SName</label>
+            </div>  
+            <div class="col-3">
+              <input type="text" class="form-control" formControlName="sname"/>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-3">
+              <label>Age</label>
+            </div>  
+            <div class="col-3">
+              <input type="number" class="form-control" formControlName="age"/>
+            </div>
+      </div>
+
+      <div class="row">
+        <div class="col-3">
+          <input type="submit" value="Store" class="btn btn-success"/>
+        </div>  
+        <div class="col-3">
+            <input type="reset" value="reset" class="btn btn-info"/>
+        </div>
+     </div>
+    </form>
+    <span style="color:red">{{result}}</span>
+    </div>
+    <h2>All Student Information</h2>
+    <table class="table table-striped">
+        <tr class="table-primary">
+            <th>SId</th>
+            <th>SName</th>
+            <th>Age</th>
+        </tr>
+        <tr *ngFor="let student of students">
+                <td>{{student.sid}}</td>
+                <td>{{student.sname}}</td>
+                <td>{{student.age}}</td>
+        </tr>
+    </table>
+</div>

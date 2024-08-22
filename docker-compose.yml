@@ -1,0 +1,57 @@
+version: '3.8'
+services:
+  mysql-service:
+    image: mysql:8.0
+    container_name: mysql_container
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=taskdb
+    ports:
+      - 3307:3306
+    networks:
+      - private
+    volumes:
+      - db:/var/lib/mysql
+    restart: always
+  eureka-server:
+    #image: akashkale/eureka-server:c4
+    build: ./backend/eureka-server/eureka-server/
+    container_name: eureka_container
+    ports:
+      - 8761:8761
+    networks:
+      - public 
+    restart: always
+  micro-service-app:
+    #image: akashkale/login-micro-service-app:c4
+    build: ./backend/micro-service-app/micro-service-app/
+    container_name: micro_service_container
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+    ports:
+      - 9090:9090
+    depends_on:
+      - mysql-service
+      - eureka-server
+    networks:
+      - private
+      - public
+    restart: always
+  angular-service:
+    #image: akashkale/angular-framework-app:c4
+    build: ./frontend/front-end-app/
+    container_name: angular_container
+    ports:
+      - 80:80
+    networks:
+      - public  
+networks:
+  private :
+    name : spring-boot-mysql-network 
+  public:
+    name : angular-and-spring-boot-network
+volumes:
+  db:
+   driver: local
+   
+  
