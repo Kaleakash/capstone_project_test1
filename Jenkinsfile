@@ -15,5 +15,13 @@ pipeline {
                 bat "docker-compose --version"
             }
         }
+        stage('Build the Eureka Server') {
+            steps {
+                dir("./backend/eureka-server/"){
+                    bat "dir"
+                    bat "mvn clean package"
+                }
+            }
+        }
     }
 }
