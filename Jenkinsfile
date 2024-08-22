@@ -17,7 +17,7 @@ pipeline {
         }
         stage('Build the Eureka Server') {
             steps {
-                dir("./backend/eureka-server/"){
+                dir("./backend/eureka-server/eureka-server/"){
                     bat "dir"
                     bat "mvn clean package"
                 }
