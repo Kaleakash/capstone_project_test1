@@ -7,8 +7,8 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class StudentService {
-baseUrl:string="http://localhost:9090/student";
-
+//baseUrl:string="http://localhost:9090/student";
+baseUrl:string="http://54.144.121.67:9090/student";
   constructor(public http:HttpClient) { }
 
 
