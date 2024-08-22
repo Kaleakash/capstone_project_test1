@@ -40,5 +40,13 @@ pipeline {
                 }
             }
         }
+        stage('Using Docker-Compose run all container') {
+            steps {
+                bat "docker-compose down"
+                bat "docker-compose up --build -d"
+                bat "docker images"
+                bat "docker ps"
+            }
+        }
     }
 }
