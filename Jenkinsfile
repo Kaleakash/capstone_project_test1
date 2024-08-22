@@ -4,7 +4,6 @@ pipeline {
         maven "MAVEN"
         nodejs "NodeJS"
     }
-
     stages {
         stage('Verify All Software Version') {
             steps {
