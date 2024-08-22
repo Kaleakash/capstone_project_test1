@@ -23,5 +23,21 @@ pipeline {
                 }
             }
         }
+        stage('Build the Micro Service project') {
+            steps {
+                dir("./backend/micro-service-app/micro-service-app/"){
+                    bat "dir"
+                    bat "mvn clean package"
+                }
+            }
+        }
+        stage('Build Angular Project') {
+            steps {
+                dir("./frontend/front-end-app/"){
+                    bat "dir"
+                    bat "ng build"
+                }
+            }
+        }
     }
 }
